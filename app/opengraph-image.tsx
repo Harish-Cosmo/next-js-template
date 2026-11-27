@@ -83,7 +83,7 @@ export default function OpengraphImage() {
               width: 160,
               height: 8,
               borderRadius: 9999,
-              background: '#4361EE',
+              background: siteConfig.brand.accent,
             }}
           />
         </div>

@@ -29,4 +29,4 @@ npm run setup        # rewrite config and theme from answers
 
 ## Never
 
-Commit, push or open a PR unless asked. Commit secrets. Add placeholder pages to the nav.
+Do not commit, push or open a PR unless asked. Do not commit secrets. Do not add placeholder pages to the nav.
