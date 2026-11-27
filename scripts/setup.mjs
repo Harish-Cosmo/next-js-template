@@ -197,12 +197,28 @@ function generateScale(hex) {
   return lightness.map((l) => hslTriplet({ h, s, l }));
 }
 
-function buildThemeCss({ primary, accent, radius, fontSans, fontMono, darkMode }) {
+function buildThemeCss({
+  primary,
+  accent,
+  radius,
+  fontSans,
+  fontMono,
+  neutralMode,
+  darkMode,
+}) {
   const primaryHsl = hslTriplet(rgbToHsl(hexToRgb(primary)));
   const accentHsl = hslTriplet(rgbToHsl(hexToRgb(accent)));
   const primaryForeground = foregroundFor(primary);
   const accentForeground = foregroundFor(accent);
   const scale = generateScale(accent);
+
+  /* "standard" gives the secondary and muted surfaces a visible tint.
+     "opacity" keeps them white and lets the foreground opacity do the work. */
+  const standard = neutralMode === 'standard';
+  const secondary = standard ? '0 0% 96%' : '0 0% 100%';
+  const muted = standard ? '0 0% 96%' : '0 0% 100%';
+  const mutedForeground = standard ? '0 0% 40%' : '0 0% 35%';
+  const border = standard ? '0 0% 88%' : '0 0% 90%';
 
   const darkBlock = darkMode
     ? `
@@ -255,16 +271,16 @@ function buildThemeCss({ primary, accent, radius, fontSans, fontMono, darkMode }
   --popover-foreground: 0 0% 0%;
   --primary: ${primaryHsl};
   --primary-foreground: ${primaryForeground};
-  --secondary: 0 0% 100%;
+  --secondary: ${secondary};
   --secondary-foreground: 0 0% 0%;
-  --muted: 0 0% 100%;
-  --muted-foreground: 0 0% 35%;
+  --muted: ${muted};
+  --muted-foreground: ${mutedForeground};
   --accent: ${accentHsl};
   --accent-foreground: ${accentForeground};
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
+  --border: ${border};
+  --input: ${border};
   --ring: ${accentHsl};
 
   /* ── Shape ── */
@@ -450,7 +466,15 @@ await writeFile(CONFIG_PATH, `${JSON.stringify(project, null, 2)}\n`, 'utf8');
 
 await writeFile(
   THEME_PATH,
-  buildThemeCss({ primary, accent, radius, fontSans, fontMono, darkMode }),
+  buildThemeCss({
+    primary,
+    accent,
+    radius,
+    fontSans,
+    fontMono,
+    neutralMode,
+    darkMode,
+  }),
   'utf8',
 );
 
