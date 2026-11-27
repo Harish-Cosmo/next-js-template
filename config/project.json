@@ -1,0 +1,39 @@
+{
+  "site": {
+    "name": "Your Project",
+    "shortName": "Project",
+    "description": "A short description of what this project does.",
+    "tagline": "A fast, findable, well-designed Next.js site.",
+    "url": "https://example.com",
+    "locale": "en_US",
+    "twitter": "",
+    "github": "",
+    "sameAs": [],
+    "indexable": true
+  },
+  "seo": {
+    "title": "Your Project — a fast, findable Next.js site",
+    "description": "A fast, accessible, SEO-ready Next.js starter with a design system and agent-friendly documentation."
+  },
+  "brand": {
+    "primary": "#000000",
+    "accent": "#4361EE",
+    "themeColor": "#000000",
+    "radius": "0.75rem",
+    "fontSans": "ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif",
+    "fontMono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+    "neutralMode": "opacity",
+    "darkMode": false
+  },
+  "features": {
+    "blog": false,
+    "docs": false,
+    "auth": false,
+    "database": false,
+    "analytics": "none"
+  },
+  "deployment": {
+    "target": "vercel",
+    "staticExport": false
+  }
+}
